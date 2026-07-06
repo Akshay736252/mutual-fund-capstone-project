@@ -1,20 +1,26 @@
+import os
 import pandas as pd
 from sqlalchemy import create_engine
 
-# SQLite Database
-engine = create_engine("sqlite:///bluestock_mf.db")
+# Project Root
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Absolute Database Path
+db_path = os.path.join(BASE_DIR, "bluestock_mf.db")
+
+engine = create_engine(f"sqlite:///{db_path}")
 
 datasets = {
-    "dim_fund": "data/processed/01_fund_master_cleaned.csv",
-    "fact_nav": "data/processed/02_nav_history_cleaned.csv",
-    "fact_aum": "data/processed/03_aum_by_fund_house_cleaned.csv",
-    "fact_sip": "data/processed/04_monthly_sip_inflows_cleaned.csv",
-    "fact_category_inflows": "data/processed/05_category_inflows_cleaned.csv",
-    "fact_folio": "data/processed/06_industry_folio_count_cleaned.csv",
-    "fact_performance": "data/processed/07_scheme_performance_cleaned.csv",
-    "fact_transactions": "data/processed/08_investor_transactions_cleaned.csv",
-    "fact_holdings": "data/processed/09_portfolio_holdings_cleaned.csv",
-    "dim_benchmark": "data/processed/10_benchmark_indices_cleaned.csv"
+    "dim_fund": os.path.join(BASE_DIR, "data", "processed", "01_fund_master_cleaned.csv"),
+    "fact_nav": os.path.join(BASE_DIR, "data", "processed", "02_nav_history_cleaned.csv"),
+    "fact_aum": os.path.join(BASE_DIR, "data", "processed", "03_aum_by_fund_house_cleaned.csv"),
+    "fact_sip": os.path.join(BASE_DIR, "data", "processed", "04_monthly_sip_inflows_cleaned.csv"),
+    "fact_category_inflows": os.path.join(BASE_DIR, "data", "processed", "05_category_inflows_cleaned.csv"),
+    "fact_folio": os.path.join(BASE_DIR, "data", "processed", "06_industry_folio_count_cleaned.csv"),
+    "fact_performance": os.path.join(BASE_DIR, "data", "processed", "07_scheme_performance_cleaned.csv"),
+    "fact_transactions": os.path.join(BASE_DIR, "data", "processed", "08_investor_transactions_cleaned.csv"),
+    "fact_holdings": os.path.join(BASE_DIR, "data", "processed", "09_portfolio_holdings_cleaned.csv"),
+    "dim_benchmark": os.path.join(BASE_DIR, "data", "processed", "10_benchmark_indices_cleaned.csv")
 }
 
 print("=" * 60)
